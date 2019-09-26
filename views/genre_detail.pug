@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h1 Genre: #{genre.name}
+
+  div(style='margin-left:20px;margin-top:20px;')
+
+    h4 Books
+
+    dl
+      - genre_books.sort(function(a, b) { let textA = a.title.toUpperCase(); let textB = b.title.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;})
+      each book in genre_books
+        dt
+          a(href=book.url) #{book.title}
+        dd #{book.summary}
+      
+      else
+        p This genre has no books.
+    
+    hr
+    p
+      a(href=genre.url + '/delete') Delete Genre
+    p
+      a(href=genre.url + '/update') Update Genre
+
+
+
