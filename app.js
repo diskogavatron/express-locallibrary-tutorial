@@ -12,8 +12,7 @@ var catalogRouter = require("./routes/catalog");
 
 var app = express();
 var mongoose = require("mongoose");
-var mongoDB =
-  "mongodb://admin:coldmail1@ds163757.mlab.com:63757/express-locallibrary";
+var mongoDB = process.env.MONGODB_URI || dev_db_url;
 
 mongoose.connect(mongoDB, { useNewUrlParser: true, useFindAndModify: false });
 var db = mongoose.connection;
